@@ -82,9 +82,11 @@ class NfcReaderTask extends AsyncTask<Tag, Void, String> {
                     data.add(new Task("Stoel + tafel 1 schoonmaken", 2));
                     data.add(new Task("Stoel + tafel 2 schoonmaken", 3));
                     data.add(new Task("Stoel + tafel 3 schoonmaken", 4));
-                    data.add(new Task("Stoel + tafel 4 schoonmaken", 5));
-                    data.add(new Task("Stoel + tafel 5 schoonmaken", 6));
-                    data.add(new Task("Deur 2 afdoen", 7));
+                    data.add(new Task("Linker raam schoonmaken", "Inclusief kozijnen", 5));
+                    data.add(new Task("Rechter raam schoonmaken", "Inclusief kozijnen", 6));
+                    data.add(new Task("Stoel + tafel 4 schoonmaken", 7));
+                    data.add(new Task("Stoel + tafel 5 schoonmaken", 8));
+                    data.add(new Task("Deur 2 afdoen", 9));
                     adapter.notifyDataSetChanged();
                     break;
                 case 2000:
