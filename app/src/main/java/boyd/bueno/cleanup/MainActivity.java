@@ -14,21 +14,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import java.util.ArrayList;
-
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     private NfcAdapter nfcAdapter;
     private PendingIntent pendingIntent;
     private IntentFilter[] intentFiltersArray;
     private String[][] techListsArray;
-
-    private ArrayList<Task> myDataset = new ArrayList<Task>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +45,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new MyAdapter(myDataset);
-        recyclerView.setAdapter(mAdapter);
+        RecyclerView.Adapter taskAdapter = new MyAdapter(Storage.getInstance().tasks);
+        Storage.getInstance().taskAdapter = taskAdapter;
+        recyclerView.setAdapter(taskAdapter);
 
         lookForNFCTag();
     }
@@ -75,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         Tag tagFromIntent = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
 
         if(tagFromIntent != null ) {
-            new NfcReaderTask(myDataset, mAdapter).execute(tagFromIntent);
+            new NfcReaderTask().execute(tagFromIntent);
         }
     }
 

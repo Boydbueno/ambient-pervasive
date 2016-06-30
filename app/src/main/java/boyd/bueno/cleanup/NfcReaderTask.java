@@ -20,12 +20,18 @@ import java.util.Arrays;
  */
 class NfcReaderTask extends AsyncTask<Tag, Void, String> {
 
-    private RecyclerView.Adapter adapter;
-    private ArrayList<Task> data;
+    private ArrayList<Task> tasks;
+    private RecyclerView.Adapter taskAdapter;
 
-    public NfcReaderTask(ArrayList<Task> data, RecyclerView.Adapter adapter) {
-        this.data = data;
-        this.adapter = adapter;
+    private ArrayList<Protocol> protocols;
+    private RecyclerView.Adapter protocolsAdapter;
+
+    public NfcReaderTask() {
+        this.tasks = Storage.getInstance().tasks;
+        this.protocols = Storage.getInstance().protocols;
+
+        this.taskAdapter = Storage.getInstance().taskAdapter;
+        this.protocolsAdapter = Storage.getInstance().protocolAdapter;
     }
 
     @Override
@@ -77,47 +83,57 @@ class NfcReaderTask extends AsyncTask<Tag, Void, String> {
         if (result != null) {
             switch(id) {
                 case 1000:
-                    data.clear();
-                    data.add(new Task("Deur 1 afdoen", "Denk aan de deurklink, beide kanten", 1));
-                    data.add(new Task("Stoel + tafel 1 schoonmaken", 2));
-                    data.add(new Task("Stoel + tafel 2 schoonmaken", 3));
-                    data.add(new Task("Stoel + tafel 3 schoonmaken", 4));
-                    data.add(new Task("Linker raam schoonmaken", "Inclusief kozijnen", 5));
-                    data.add(new Task("Rechter raam schoonmaken", "Inclusief kozijnen", 6));
-                    data.add(new Task("Stoel + tafel 4 schoonmaken", 7));
-                    data.add(new Task("Stoel + tafel 5 schoonmaken", 8));
-                    data.add(new Task("Deur 2 afdoen", 9));
-                    adapter.notifyDataSetChanged();
+                    tasks.clear();
+                    tasks.add(new Task("Deur 1 afdoen", "Denk aan de deurklink, beide kanten", 1));
+                    tasks.add(new Task("Stoel + tafel 1 schoonmaken", 2));
+                    tasks.add(new Task("Stoel + tafel 2 schoonmaken", 3));
+                    tasks.add(new Task("Stoel + tafel 3 schoonmaken", 4));
+                    tasks.add(new Task("Linker raam schoonmaken", "Inclusief kozijnen", 5));
+                    tasks.add(new Task("Rechter raam schoonmaken", "Inclusief kozijnen", 6));
+                    tasks.add(new Task("Stoel + tafel 4 schoonmaken", 7));
+                    tasks.add(new Task("Stoel + tafel 5 schoonmaken", 8));
+                    tasks.add(new Task("Deur 2 afdoen", 9));
+                    if (taskAdapter != null) {
+                        taskAdapter.notifyDataSetChanged();
+                    }
+                    if (protocolsAdapter != null) {
+                        protocolsAdapter.notifyDataSetChanged();
+                    }
                     break;
                 case 2000:
-                    data.clear();
-                    data.add(new Task("Deur 1 afdoen", "Denk aan de deurklink", 1));
-                    data.add(new Task("Stoel + tafel 1 schoonmaken", 2));
-                    data.add(new Task("Stoel + tafel 2 schoonmaken", 3));
-                    data.add(new Task("Stoel + tafel 3 schoonmaken", 4));
-                    data.add(new Task("Stoel + tafel 4 schoonmaken", 5));
-                    data.add(new Task("Raam links schoonmaken", 6));
-                    data.add(new Task("Deur 2 afdoen", 7));
-                    data.add(new Task("Raam rechts schoonmaken", 8));
-                    data.add(new Task("Stoel + tafel 5 schoonmaken", 9));
-                    data.add(new Task("Stoel + tafel 6 schoonmaken", 10));
-                    data.add(new Task("Stoel + tafel 7 schoonmaken", 11));
-                    data.add(new Task("Deur 3 afdoen", 12));
-                    adapter.notifyDataSetChanged();
+                    tasks.clear();
+                    tasks.add(new Task("Deur 1 afdoen", "Denk aan de deurklink", 1));
+                    tasks.add(new Task("Stoel + tafel 1 schoonmaken", 2));
+                    tasks.add(new Task("Stoel + tafel 2 schoonmaken", 3));
+                    tasks.add(new Task("Stoel + tafel 3 schoonmaken", 4));
+                    tasks.add(new Task("Stoel + tafel 4 schoonmaken", 5));
+                    tasks.add(new Task("Raam links schoonmaken", 6));
+                    tasks.add(new Task("Deur 2 afdoen", 7));
+                    tasks.add(new Task("Raam rechts schoonmaken", 8));
+                    tasks.add(new Task("Stoel + tafel 5 schoonmaken", 9));
+                    tasks.add(new Task("Stoel + tafel 6 schoonmaken", 10));
+                    tasks.add(new Task("Stoel + tafel 7 schoonmaken", 11));
+                    tasks.add(new Task("Deur 3 afdoen", 12));
+                    if (taskAdapter != null) {
+                        taskAdapter.notifyDataSetChanged();
+                    }
+                    if (protocolsAdapter != null) {
+                        protocolsAdapter.notifyDataSetChanged();
+                    }
                     break;
                 default:
                     Task taskToRemove = null;
-                    for (Task task : data) {
+                    for (Task task : tasks) {
                         if (task.id == id) {
                             taskToRemove = task;
                             Log.e("test", "Task to remove: " + taskToRemove.toString());
                         }
                     }
-                    if (data.indexOf(taskToRemove) != -1) {
-                        int indexOf = data.indexOf(taskToRemove);
-                        data.remove(indexOf);
+                    if (tasks.indexOf(taskToRemove) != -1) {
+                        int indexOf = tasks.indexOf(taskToRemove);
+                        tasks.remove(indexOf);
 
-                        adapter.notifyItemRemoved(indexOf);
+                        taskAdapter.notifyItemRemoved(indexOf);
                         Log.e("test", String.valueOf(taskToRemove.toString()));
                     }
 
