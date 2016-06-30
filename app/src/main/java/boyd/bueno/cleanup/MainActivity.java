@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -41,9 +42,14 @@ public class MainActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
 
-        RecyclerView.Adapter taskAdapter = new TaskAdapter(Storage.getInstance().tasks);
+        TaskAdapter taskAdapter = new TaskAdapter(Storage.getInstance().tasks);
         Storage.getInstance().taskAdapter = taskAdapter;
         recyclerView.setAdapter(taskAdapter);
+
+        // Setup ItemTouchHelper
+        ItemTouchHelper.Callback callback = new TaskTouchHelper(taskAdapter);
+        ItemTouchHelper helper = new ItemTouchHelper(callback);
+        helper.attachToRecyclerView(recyclerView);
 
         Storage.getInstance().tasks.add(new Task("Scan een ruimte voor een takenlijst", 1));
         Storage.getInstance().protocols.add(new Protocol("Scan een ruimte voor relevante protocollen"));

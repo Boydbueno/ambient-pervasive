@@ -39,7 +39,7 @@ public class ProtocolsActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
 
-        RecyclerView.Adapter protocolsAdapter = new ProtocolAdapter(Storage.getInstance().protocols);
+        ProtocolAdapter protocolsAdapter = new ProtocolAdapter(Storage.getInstance().protocols);
         Storage.getInstance().taskAdapter = protocolsAdapter;
         recyclerView.setAdapter(protocolsAdapter);
 
