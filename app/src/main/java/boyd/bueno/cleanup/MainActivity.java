@@ -36,16 +36,12 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         recyclerView = (RecyclerView) findViewById(R.id.tasks_view);
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true);
 
-        // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
 
-        // specify an adapter (see also next example)
-        RecyclerView.Adapter taskAdapter = new MyAdapter(Storage.getInstance().tasks);
+        RecyclerView.Adapter taskAdapter = new TaskAdapter(Storage.getInstance().tasks);
         Storage.getInstance().taskAdapter = taskAdapter;
         recyclerView.setAdapter(taskAdapter);
 

@@ -9,10 +9,14 @@ import android.nfc.tech.NfcF;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
 public class ProtocolsActivity extends AppCompatActivity {
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     private NfcAdapter nfcAdapter;
     private PendingIntent pendingIntent;
@@ -28,6 +32,16 @@ public class ProtocolsActivity extends AppCompatActivity {
         setSupportActionBar(myChildToolbar);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
+
+        recyclerView = (RecyclerView) findViewById(R.id.protocols_view);
+        recyclerView.setHasFixedSize(true);
+
+        mLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(mLayoutManager);
+
+        RecyclerView.Adapter protocolsAdapter = new ProtocolAdapter(Storage.getInstance().protocols);
+        Storage.getInstance().taskAdapter = protocolsAdapter;
+        recyclerView.setAdapter(protocolsAdapter);
 
         lookForNFCTag();
     }

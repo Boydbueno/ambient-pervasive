@@ -93,9 +93,20 @@ class NfcReaderTask extends AsyncTask<Tag, Void, String> {
                     tasks.add(new Task("Stoel + tafel 4 schoonmaken", 7));
                     tasks.add(new Task("Stoel + tafel 5 schoonmaken", 8));
                     tasks.add(new Task("Deur 2 afdoen", 9));
+
                     if (taskAdapter != null) {
                         taskAdapter.notifyDataSetChanged();
                     }
+
+                    protocols.clear();
+                    protocols.add(new Protocol("8.1 Reinigen"));
+                    protocols.add(new Protocol("8.3 Stofzuigen"));
+                    protocols.add(new Protocol("8.4 Desinfecteren"));
+                    protocols.add(new Protocol("9.3 Emmers"));
+                    protocols.add(new Protocol("9.4 Materiaalwagen"));
+                    protocols.add(new Protocol("9.5 Moppen"));
+                    protocols.add(new Protocol("9.9 Vaatdoeken"));
+
                     if (protocolsAdapter != null) {
                         protocolsAdapter.notifyDataSetChanged();
                     }
@@ -114,9 +125,22 @@ class NfcReaderTask extends AsyncTask<Tag, Void, String> {
                     tasks.add(new Task("Stoel + tafel 6 schoonmaken", 10));
                     tasks.add(new Task("Stoel + tafel 7 schoonmaken", 11));
                     tasks.add(new Task("Deur 3 afdoen", 12));
+
                     if (taskAdapter != null) {
                         taskAdapter.notifyDataSetChanged();
                     }
+
+                    protocols.clear();
+                    protocols.add(new Protocol("8.1 Reinigen"));
+                    protocols.add(new Protocol("8.2 Sanitair reinigen"));
+                    protocols.add(new Protocol("8.3 Stofzuigen"));
+                    protocols.add(new Protocol("8.4 Desinfecteren"));
+                    protocols.add(new Protocol("9.3 Emmers"));
+                    protocols.add(new Protocol("9.4 Materiaalwagen"));
+                    protocols.add(new Protocol("9.5 Moppen"));
+                    protocols.add(new Protocol("9.6 Schrobautomaat / zuigmachine"));
+                    protocols.add(new Protocol("9.9 Vaatdoeken"));
+
                     if (protocolsAdapter != null) {
                         protocolsAdapter.notifyDataSetChanged();
                     }

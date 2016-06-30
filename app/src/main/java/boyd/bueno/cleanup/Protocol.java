@@ -8,4 +8,7 @@ public class Protocol {
     public Protocol(String text) {
         this.text = text;
     }
+
+    @Override
+    public String toString() { return text; }
 }
