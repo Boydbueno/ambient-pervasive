@@ -51,9 +51,6 @@ public class MainActivity extends AppCompatActivity {
         ItemTouchHelper helper = new ItemTouchHelper(callback);
         helper.attachToRecyclerView(recyclerView);
 
-        Storage.getInstance().tasks.add(new Task("Scan een ruimte voor een takenlijst", 1));
-        Storage.getInstance().protocols.add(new Protocol("Scan een ruimte voor relevante protocollen"));
-
         lookForNFCTag();
     }
 

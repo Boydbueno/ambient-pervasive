@@ -12,7 +12,10 @@ public class Storage {
     public RecyclerView.Adapter protocolAdapter;
 
     private static Storage instance = null;
-    protected Storage() {}
+    protected Storage() {
+        tasks.add(new Task("Scan een ruimte voor een takenlijst", 1));
+        protocols.add(new Protocol("Scan een ruimte voor relevante protocollen"));
+    }
 
     public static Storage getInstance() {
         if (instance == null) {

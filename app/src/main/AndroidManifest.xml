@@ -24,8 +24,10 @@
                 <data android:mimeType="tag/clean" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProtocolsActivity"
-            android:parentActivityName="boyd.bueno.cleanup.MainActivity"></activity>
+        <activity
+            android:name=".ProtocolsActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".SingleProtocolActivity"></activity>
     </application>
 
 </manifest>
